@@ -7,7 +7,7 @@ build:
 
   variables:
     IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-    PLATFORM: linux/amd64,linux/arm64/v8,linux/arm/v6,linux/arm/v7
+    PLATFORM: linux/amd64,linux/arm64/v8
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
 

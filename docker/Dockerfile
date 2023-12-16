@@ -11,7 +11,7 @@ ENV BASE_URL APP_BASE_URL
 
 COPY . /tmp/app/
 
-RUN cd /tmp/app && npm install \
+RUN cd /tmp/app && npm install -timeout=60000 \
   && npm run build \
   && rm -rf node_modules \
   && mv /tmp/app/.output/* /app/ \
