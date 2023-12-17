@@ -20,6 +20,7 @@ build:
     - sed -i 's|__VERSION_LINK__|https://github.com/6px/Inventronic/releases/tag/'$CI_COMMIT_REF_NAME'|g' components/AppFooter.vue
     - echo "$CI_REGISTRY_PASSWORD" | docker login --username $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - docker buildx build -f ./docker/Dockerfile --push -t "$IMAGE_TAG" --platform "$PLATFORM" --cache-from "$IMAGE_TAG" --build-arg BUILDKIT_INLINE_CACHE=1 .
+    - docker pull $IMAGE_TAG
     - docker tag $IMAGE_TAG $CI_REGISTRY_IMAGE:latest
     - docker tag $IMAGE_TAG $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
     - docker push $IMAGE_TAG
