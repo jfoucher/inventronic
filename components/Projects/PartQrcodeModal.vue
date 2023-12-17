@@ -8,7 +8,7 @@
         </div>
       </template>
       <div id="image">
-        <CommonQRCode
+        <CommonQrcode
           :title="projectPart.parts.part === projectPart.parts.value ? projectPart.parts.part : projectPart.parts.part + ' ' + projectPart.parts.value"
           :subtitle="projectPart.references"
           :description="projectPart.parts.footprint"

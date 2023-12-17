@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CommonQrCode
+    <CommonQrcode
         v-for="part in parts"
         :title="part.part === part.value ? part.part : part.part + ' ' + part.value"
         :subtitle="part.footprint + '\n' + (part.locations ? part.locations.name : '')"
@@ -11,8 +11,7 @@
         :qrSize="11"
         :url="`${config.public.baseUrl}/parts/${uuidb64(part.id)}`"
         @ready="ready"
-      >
-      </CommonQrCode>
+      />
   </div>
 </template>
 
@@ -29,10 +28,18 @@ const cnt = ref(0)
 const client = useSupabaseClient()
 
 
+const ids = computed(() => {
+  if (typeof route.query.ids === 'string'){
+    return [route.query.ids]
+  }
+  return route.query.ids
+})
+
 
 const {data: parts, refresh} = await useAsyncData('parts', async () => {
-  const { data } = await client.from('parts').select(`${partFields()}, parts(id, part, value)`).in('id', route.query.ids).order('created_at')
+  const { data } = await client.from('parts').select(`${partFields()}, parts(id, part, value)`).in('id', ids.value).order('created_at')
   
+  console.log(data)
   return data
 })
 
@@ -40,6 +47,7 @@ const ready = () => {
   cnt.value += 1
   if (cnt.value >= parts.value.length) {
     window.print()
+    window.close()
   }
 }
 

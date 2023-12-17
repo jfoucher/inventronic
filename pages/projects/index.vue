@@ -37,7 +37,7 @@
       <ProjectsNew :open="newModal" @close="closedNew" />
       <UButton label="New project" @click="newModal = true" />
     </UContainer>
-    <ProjectsQRCodeModal :open="qrModal" :project="qrProject" @close="qrModal = false" />
+    <ProjectsQrcodeModal :open="qrModal" :project="qrProject" @close="qrModal = false" />
 
   </div>
 </template>

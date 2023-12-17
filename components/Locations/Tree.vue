@@ -59,7 +59,7 @@
         </div>
         <div v-else class="w-7 h-5"></div>
       </div>
-      <LocationsQRCodeModal :open="qrModal === location.id" :location="location" @close="qrModal = 0" />
+      <LocationsQrcodeModal :open="qrModal === location.id" :location="location" @close="qrModal = 0" />
       <LocationsCreate :open="createModal === location.id" :parent="location" @close="createModal = 0"
         @refresh="refresh" />
       <LocationsTree :locations="location.locations" v-if="opened[location.id]" :depth="depth + 1" @refresh="refresh" />

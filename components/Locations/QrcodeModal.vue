@@ -3,18 +3,17 @@
     <UCard :ui="{ body: {background: 'bg-slate-200 dark:bg-slate-800'}, divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
       <template #header>
         <div class="flex items-center justify-between">
-          <h2>Label for {{ project.name }} </h2>
+          <h2>Label for {{ location.name }}</h2>
           <UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" @click="emit('close')" />
         </div>
       </template>
       <div id="image">
-        <CommonQRCode
-          :title="project.name"
-          :subtitle="project.description || ''"
-          :description="project.url || ''"
-          :description-size="1.75"
-          :subtitle-size="2.5"
-          :url="project.url || project.name"
+        <CommonQrcode
+          :title="location.name"
+          :qrSize="12"
+          :subtitle="location.description + '\n' + location.location_parts.length + (location.location_parts.length === 1 ? ' part' : ' parts')"
+          :description="`${req.public.baseUrl}/locations/${uuidb64(props.location.id)}`"
+          :url="`${req.public.baseUrl}/locations/${uuidb64(props.location.id)}`"
         />
       </div>
       <template #footer>
@@ -37,7 +36,7 @@
 
 
 const req = useRuntimeConfig()
-const emit = defineEmits()
+const emit = defineEmits(['close'])
 
 
 
@@ -46,16 +45,19 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
-  project: {
-    type: Object as Project,
+  location: {
+    type: Object as Location,
     required: true,
   },
 });
 
 const open = ref(false)
 
+
+
+
 const print = () => {
-  const mywindow = window.open(`${req.public.baseUrl}/projects/${props.project.id}`, 'PRINT', 'height=400,width=600');
+  const mywindow = window.open(`${req.public.baseUrl}/locations/${props.location.id}`, 'PRINT', 'height=400,width=600');
   const html = document.getElementById('image').innerHTML
   mywindow.onload = () => {
     mywindow.document.head.innerHTML = ''
@@ -64,12 +66,12 @@ const print = () => {
     const css = mywindow.document.createTextNode(`
     @media print {
       svg {
-        width: 54mm !important;
+        width: 50mm !important;
         padding:0;
         margin:0;
       }
       body{
-        width: 54mm !important; 
+        width: 50mm !important; 
         height: 17mm !important; 
         color-adjust: exact;
         padding:0;

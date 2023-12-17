@@ -98,7 +98,7 @@
 
     <PartsPartModal :partModal="partModal" :selectedPart="selectedPart" @close="partModal = false"
       @refresh="emit('refresh')" @setParent="setParent" />
-    <PartsQRCodeModal :open="qrModal" :part="qrPart" @close="qrModal = false" />
+    <PartsQrcodeModal :open="qrModal" :part="qrPart" @close="qrModal = false" />
 
   </div>
 </template>
@@ -242,6 +242,7 @@ const setParent = () => {
 }
 
 const createPart = () => {
+  selectedPart.value = {}
   partModal.value = true;
 }
 
@@ -270,7 +271,7 @@ const printTag = (row: Part) => {
 }
 
 const printTags = () => {
-  const routeData = router.resolve({ path: '/parts/print', query: { ids: selected.value.map(p => p.id) } });
+  const routeData = router.resolve({ path: '/parts/print', query: { 'ids': selected.value.map(p => p.id) } });
   window.open(routeData.href, '_blank');
 }
 

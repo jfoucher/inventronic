@@ -130,7 +130,7 @@
       <UPagination v-if="pageCount < project.project_parts.length" v-model="page" :page-count="pageCount"
         :total="project.project_parts.length" />
     </div>
-    <ProjectsPartQRCodeModal :open="qrModal" :projectPart="qrPart" @close="qrModal = false" />
+    <ProjectsPartQrcodeModal :open="qrModal" :projectPart="qrPart" @close="qrModal = false" />
     <ProjectsProjectPartModal :open="ppModal" :projectPart="ppPart" @close="ppModal = false" @refresh="emit('refresh')" />
 
     <PartsPartModal :partModal="partModal" :selectedPart="selectedPart" :saving="saving" @close="partModal = false"

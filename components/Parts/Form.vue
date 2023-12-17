@@ -124,7 +124,7 @@
           @click="selectedLocations.push({ key: Math.random() * 1000000, quantity: 0, locations: {} })" />
       </div>
 
-      <PartsQRCodeModal :open="qrModal" :part="qrPart" @close="qrModal = false" />
+      <PartsQrcodeModal :open="qrModal" :part="qrPart" @close="qrModal = false" />
 
 
       <template #footer>

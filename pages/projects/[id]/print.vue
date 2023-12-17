@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="route.query.ids" class="bg-white">
-      <CommonQrCode v-for="projectPart in parts"
+      <CommonQrcode v-for="projectPart in parts"
         :title="projectPart.parts.part === projectPart.parts.value ? projectPart.parts.part : projectPart.parts.part + ' ' + projectPart.parts.value"
         :subtitle="projectPart.references" :description="projectPart.parts.footprint" :description-size="2"
         :subtitle-size="2.5" :url="`${config.public.baseUrl}/parts/${uuidb64(projectPart.parts.id)}`" @ready="ready" />
@@ -31,6 +31,8 @@ const { data: project } = await useAsyncData(`project-${route.params.id}`, async
 
   return data[0]
 })
+
+
 
 const parts = computed(() => {
   return project.value.project_parts.filter((p: ProjectPart) => route.query.ids.indexOf(p.id) >= 0)
