@@ -27,14 +27,12 @@ const cnt = ref(0)
 
 const client = useSupabaseClient()
 
-
 const ids = computed(() => {
   if (typeof route.query.ids === 'string'){
     return [route.query.ids]
   }
   return route.query.ids
 })
-
 
 const {data: parts, refresh} = await useAsyncData('parts', async () => {
   const { data } = await client.from('parts').select(`${partFields()}, parts(id, part, value)`).in('id', ids.value).order('created_at')
