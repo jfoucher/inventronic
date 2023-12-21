@@ -1,9 +1,11 @@
 build:
   image: snickch/buildx:latest
   stage: build
-  services:
-    - name: docker:dind
-      alias: docker
+  tags:
+    - docker
+  # services:
+  #   - name: docker:dind
+  #     alias: docker
 
   variables:
     IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
