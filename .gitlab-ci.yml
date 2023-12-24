@@ -15,7 +15,7 @@ build:
   before_script:
     - docker info
     # - docker run --privileged --rm tonistiigi/binfmt --install all
-    # - docker buildx create --use
+    - docker buildx create --use
 
   script:
     - sed -i 's|__VERSION__|'$CI_COMMIT_REF_NAME'|g' components/AppFooter.vue
