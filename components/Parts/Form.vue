@@ -83,7 +83,10 @@
           <UInput v-model=state.price step="0.01" color="white" type="number" variant="outline" placeholder="" />
         </UFormGroup>
         <UFormGroup label="Ordering URL" name="ordering_url">
-          <UInput v-model=state.ordering_url color="white" variant="outline" placeholder="" />
+          <div class="flex flex-row">
+            <UInput class="grow" v-model=state.ordering_url color="white" variant="outline" placeholder="" />
+            <UButton class="ml-2" v-if="state.ordering_url" :to="state.ordering_url" icon="i-heroicons-banknotes" />
+          </div>
         </UFormGroup>
 
       </div>
