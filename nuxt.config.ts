@@ -22,8 +22,10 @@ export default defineNuxtConfig({
     },
   },
   css: ['~/assets/css/main.css'],
-  ssr: true,
-
+  ssr: false,
+  routeRules: {
+    "/": { prerender: true },
+  },
   colorMode: {
     preference: 'system',
     fallback: 'light',

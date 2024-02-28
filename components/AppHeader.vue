@@ -88,8 +88,7 @@ const hash = ref('')
 const showNav = ref(false)
 
 function digestMessage(message: String) {
-  const hashDigest = sha256(message);
-  return hashDigest
+  return sha256(message)
 }
 
 const setHash = async () => {
