@@ -28,7 +28,6 @@
           </div>
         </div>
         <div class="absolute inset-y-0 right-0 flex items-center pr-0 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-
           <div class="flex items m-1" v-if="user">
             <UPopover :popper="{ arrow: true, placement: 'bottom-end' }">
               <UButton color="white" variant="ghost" trailing-icon="i-heroicons-chevron-down-20-solid">
