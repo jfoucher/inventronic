@@ -5,7 +5,7 @@
         active-class="font-bold text-primary-600"
         class="hover:text-primary-600 px-3 py-2 flex items-center"
     >
-      <UIcon class="p-2" name="i-heroicons-outline-cpu-chip" />
+      <UIcon class="p-2" name="i-heroicons-chart-bar-square" />
       <span class="pl-1">Dashboard</span>
     </NuxtLink>
     <NuxtLink
